@@ -37,12 +37,10 @@
         ME => Your Github Username
         MYREPO => Your github repository name.
     -->
-    <!--
     <scm>
-        <url>https://github.com/ME/MYREPO</url>
-        <connection>scm:git:git@github.com:ME/MYREPO.git</connection>
+        <url>https://github.com/codenameone/QRScanner</url>
+        <connection>scm:git:git@github.com:codenameone/QRScanner.git</connection>
     </scm>
-    -->
 
 	  
     <properties>
