@@ -24,7 +24,7 @@ Add the following dependency to your project's common/pom.xml file:
 <dependency>
     <groupId>com.codenameone</groupId>
     <artifactId>qrscanner-lib</artifactId>
-    <version>1.0</version>
+    <version>2.0.0</version>
     <type>pom</type>
 </dependency>
 ```
@@ -78,8 +78,6 @@ If you want to detect ALL supported code types, you can call the following befor
 ```java
 Display.getInstance().setProperty("scanAllCodeTypes", "true");
 ```
-
-```java
 
 ## Building from Source
 
