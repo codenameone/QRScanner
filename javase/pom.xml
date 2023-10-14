@@ -4,11 +4,11 @@
   <parent>
       <groupId>com.codenameone</groupId>
       <artifactId>qrscanner</artifactId>
-      <version>2.0.1</version>
+      <version>2.0.2</version>
   </parent>
   <groupId>com.codenameone</groupId>
   <artifactId>qrscanner-javase</artifactId>
-  <version>2.0.1</version>
+  <version>2.0.2</version>
 
   <name>qrscanner-javase</name>
   
