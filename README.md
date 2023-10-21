@@ -33,10 +33,11 @@ If you want to hack on the sources, and use a modified version, you can just clo
 
 ### Ant Projects
 
-1. Install the [cn1-codescan](https://github.com/codenameone/cn1-codescan) library into your project.
-1. Build or download the [QRScanner.cn1lib](common/target/qrscanner-1.0-SNAPSHOT.cn1lib) file.
-2. Put the file the `libs` folder of your project.
-3. Right-click on your project and choose `Refresh Libs`
+Use Codename One Preferences to install the QRScanner library.
+
+or
+
+Build this project from source, then find the `.cn1lib` file in the `common/target` directory, and copy it to the "libs" directory of your Codename One application project, and select "Refresh Libs".
 
 Example Code
 ------------
