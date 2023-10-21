@@ -24,7 +24,7 @@ Add the following dependency to your project's common/pom.xml file:
 <dependency>
     <groupId>com.codenameone</groupId>
     <artifactId>qrscanner-lib</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.2</version>
     <type>pom</type>
 </dependency>
 ```
