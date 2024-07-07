@@ -5,10 +5,53 @@
 @implementation com_codename1_ext_codescan_NativeCodeScannerImpl
 
 -(void)scanQRCode{
+#ifdef CN1_QRSCANNER_AVFOUNDATION
+    CN1AVFoundationCodeScanner *scannerViewController = [self isScanAllTypesEnabled]
+        ? [[CN1AVFoundationCodeScanner alloc] init]
+        : [[CN1AVFoundationCodeScanner alloc] initWithMetadataObjectTypes: [self getQRScanningTypes]]
+    [[CodenameOne_GLViewController instance] presentModalViewController:scannerViewController animated:NO];
+    return;
+#endif
     [self scanBarCode];
 }
 
+-(NSArray*) getBarCodeScanningTypes {
+    return @[AVMetadataObjectTypeEAN13Code];
+}
+
+-(NSArray*) getQRScanningTypes {
+    return @[AVMetadataObjectTypeQRCode];
+}
+
+-(BOOL) isScanAllTypesEnabled {
+    NSString *resultString = [self getStringDisplayProperty: @"scanAllCodeTypes" default: @"false"];
+    return [resultString isEqualToString:@"true"];
+}
+
+-(NSString*) getStringDisplayProperty: (NSString*)key default:(NSString*)defaultVal {
+    enteringNativeAllocations();
+    JAVA_OBJECT d = com_codename1_ui_Display_getInstance__(CN1_THREAD_GET_STATE_PASS_SINGLE_ARG);
+    JAVA_OBJECT jkey = fromNSString(CN1_THREAD_GET_STATE_PASS_ARG key);
+    JAVA_OBJECT jdefaultVal = fromNSString(CN1_THREAD_GET_STATE_PASS_ARG defaultVal);
+    JAVA_OBJECT res = com_codename1_ui_Display_getProperty___java_lang_String_java_lang_String_R_java_lang_String(
+        CN1_THREAD_GET_STATE_PASS_ARG d,
+        key,
+        defaultVal
+    );
+    finishedNativeAllocations();
+
+    return toNSString(CN1_THREAD_GET_STATE_PASS_ARG res);
+}
+
 -(void)scanBarCode{
+#ifdef CN1_QRSCANNER_AVFOUNDATION
+    CN1AVFoundationCodeScanner *scannerViewController = [self isScanAllTypesEnabled]
+            ? [[CN1AVFoundationCodeScanner alloc] init]
+            : [[CN1AVFoundationCodeScanner alloc] initWithMetadataObjectTypes: [self getBarCodeScanningTypes]]
+    CN1AVFoundationCodeScanner *scannerViewController = [[CN1AVFoundationCodeScanner alloc] init]
+    [[CodenameOne_GLViewController instance] presentModalViewController:scannerViewController animated:NO];
+    return;
+#endif
 #if !TARGET_IPHONE_SIMULATOR
     dispatch_async(dispatch_get_main_queue(), ^{
         POOL_BEGIN();

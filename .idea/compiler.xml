@@ -17,15 +17,6 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="codenameone-maven-manual" target="1.8" />
-      <module name="qrscanner-android" target="1.8" />
-      <module name="qrscanner-common" target="1.8" />
-      <module name="qrscanner-ios" target="1.8" />
-      <module name="qrscanner-javascript" target="1.8" />
-      <module name="qrscanner-javase" target="1.8" />
-      <module name="qrscanner-lib" target="1.8" />
-      <module name="qrscanner-tests" target="1.8" />
-      <module name="qrscanner-tests-common" target="1.8" />
-      <module name="qrscanner-win" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
