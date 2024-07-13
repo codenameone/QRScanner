@@ -64,7 +64,7 @@ It should pretty much be a drop in replacement for CodeScanner.  If you need to 
 do not change this line to QRScanner:
 
 ```java
-if (CodeScanner.getInstance() != null) {
+if (CodeScanner.isSupported()) {
     QRScanner.scanQRCode(myScanResult);
 } else {
     Dialog.show("Not Supported","QR Code Scanning is not available on this device","OK",null);
