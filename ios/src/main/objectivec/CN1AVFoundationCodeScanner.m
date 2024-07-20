@@ -83,6 +83,9 @@
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray<__kindof AVMetadataObject *> *)metadataObjects fromConnection:(AVCaptureConnection *)connection {
     for (AVMetadataObject *metadataObject in metadataObjects) {
+        if (![metadataObject isKindOfClass:[AVMetadataMachineReadableCodeObject class]]) {
+            continue;
+        }
         if (self.metadataObjectTypes == nil || self.metadataObjectTypes.count == 0 || [self.metadataObjectTypes containsObject:metadataObject.type]) {
             AVMetadataMachineReadableCodeObject *readableObject = (AVMetadataMachineReadableCodeObject *)metadataObject;
             NSString *scannedResult = readableObject.stringValue;

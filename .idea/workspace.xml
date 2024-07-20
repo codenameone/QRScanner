@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="791ac7de-2314-4871-80e8-bb25b13cdfb9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/src/main/objectivec/CN1AVFoundationCodeScanner.m" beforeDir="false" afterPath="$PROJECT_DIR$/ios/src/main/objectivec/CN1AVFoundationCodeScanner.m" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,29 +22,35 @@
   <component name="MavenRunner">
     <option name="delegateBuildToMaven" value="true" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="1pD3iE4rAr4Bw5nFw0V4y00PCKh" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Maven.qrscanner [install].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Volumes/1TBSSD/Users/shannah/cn1_files/cn1libs/QRScanner/ios/src/main/objectivec"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.qrscanner [deploy,-Psign-artifacts].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.qrscanner [install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Volumes/1TBSSD/Users/shannah/cn1_files/cn1libs/QRScanner/ios/src/main/objectivec&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/ios/src/main/objectivec" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/images" />
     </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn deploy -Psign-artifacts" />
+    </option>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
