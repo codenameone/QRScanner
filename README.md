@@ -57,6 +57,8 @@ QRScanner.scanQRCode(new ScanResult() {
 });
 ```
 
+Notice that when scanning a barcode you would need to use the `scanBarCode` method instead of the `scanQRCode` method.
+
 Converting an existing app
 --------------------------
 
