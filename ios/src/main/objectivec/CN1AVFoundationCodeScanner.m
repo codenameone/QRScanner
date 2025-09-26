@@ -23,6 +23,33 @@
 }
 
 - (void)scanBarCode {
+    // Check camera permission status first
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+    if (authStatus == AVAuthorizationStatusDenied || authStatus == AVAuthorizationStatusRestricted) {
+        // Camera permission denied
+        com_codename1_ext_codescan_CodeScanner_scanErrorCallback___int_java_lang_String(CN1_THREAD_GET_STATE_PASS_ARG -2, fromNSString(CN1_THREAD_GET_STATE_PASS_ARG @"Camera permission denied"));
+        [self dismissModalViewControllerAnimated:YES];
+        return;
+    } else if (authStatus == AVAuthorizationStatusNotDetermined) {
+        // Request permission
+        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+            if (granted) {
+                [self performScanBarCode];
+            } else {
+                com_codename1_ext_codescan_CodeScanner_scanErrorCallback___int_java_lang_String(CN1_THREAD_GET_STATE_PASS_ARG -2, fromNSString(CN1_THREAD_GET_STATE_PASS_ARG @"Camera permission denied"));
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self dismissModalViewControllerAnimated:YES];
+                });
+            }
+        }];
+        return;
+    }
+    
+    // Permission already granted, proceed with scanning
+    [self performScanBarCode];
+}
+
+- (void)performScanBarCode {
     dispatch_async(dispatch_get_main_queue(), ^{
         POOL_BEGIN();
 
@@ -33,6 +60,10 @@
         AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
         if (!input) {
             NSLog(@"Error: %@", error);
+            // Call error callback and return
+            com_codename1_ext_codescan_CodeScanner_scanErrorCallback___int_java_lang_String(CN1_THREAD_GET_STATE_PASS_ARG -1, fromNSString(CN1_THREAD_GET_STATE_PASS_ARG [error localizedDescription]));
+            [self dismissModalViewControllerAnimated:YES];
+            POOL_END();
             return;
         }
         [self.session addInput:input];
@@ -53,13 +84,24 @@
         self.previewLayer.frame = self.view.layer.bounds;
         [self.view.layer addSublayer:self.previewLayer];
 
-        // Add tap gesture recognizer to cancel scanning
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelScanning)];
-        [self.view addGestureRecognizer:tapGesture];
+        // Add visible Cancel button
+        [self addCancelButton];
 
         [self.session startRunning];
         POOL_END();
     });
+}
+
+- (void)addCancelButton {
+    // Create a Cancel button in the top-right corner
+    UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+    [cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    cancelButton.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]; // Semi-transparent background
+    cancelButton.layer.cornerRadius = 8;
+    cancelButton.frame = CGRectMake(self.view.frame.size.width - 100, 50, 80, 40);
+    [cancelButton addTarget:self action:@selector(cancelScanning) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:cancelButton];
 }
 
 - (void)cancelScanning {
@@ -69,14 +111,14 @@
 
 -(void)cleanupScanning {
     [self.session stopRunning];
-        [self.previewLayer removeFromSuperlayer];
-        // Remove the tap gesture recognizer
-        for (UIGestureRecognizer *recognizer in self.view.gestureRecognizers) {
-            if ([recognizer isKindOfClass:[UITapGestureRecognizer class]]) {
-                [self.view removeGestureRecognizer:recognizer];
-            }
+    [self.previewLayer removeFromSuperlayer];
+    // Remove the cancel button
+    for (UIView *subview in self.view.subviews) {
+        if ([subview isKindOfClass:[UIButton class]]) {
+            [subview removeFromSuperview];
         }
-        [self dismissModalViewControllerAnimated: YES];
+    }
+    [self dismissModalViewControllerAnimated: YES];
 }
 
 #pragma mark - AVCaptureMetadataOutputObjectsDelegate

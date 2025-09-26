@@ -37,6 +37,15 @@
         com_codename1_ext_codescan_CodeScanner_scanCompletedCallback___java_lang_String_java_lang_String_byte_1ARRAY(CN1_THREAD_GET_STATE_PASS_ARG fromNSString(CN1_THREAD_GET_STATE_PASS_ARG symbol.data), fromNSString(CN1_THREAD_GET_STATE_PASS_ARG symbol.typeName), JAVA_NULL);
         //com_codename1_impl_ios_IOSImplementation_scanCompleted___java_lang_String_java_lang_String(CN1_THREAD_GET_STATE_PASS_ARG fromNSString(CN1_THREAD_GET_STATE_PASS_ARG symbol.data), fromNSString(CN1_THREAD_GET_STATE_PASS_ARG symbol.typeName));
 }
+
+- (void) imagePickerControllerDidCancel: (UIImagePickerController*) reader
+{
+    // ADD: dismiss the controller
+    [reader dismissModalViewControllerAnimated: YES];
+    
+    // Call the cancel callback
+    com_codename1_ext_codescan_CodeScanner_scanCanceledCallback__(CN1_THREAD_GET_STATE_PASS_SINGLE_ARG);
+}
 #endif
 
 /*- (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result {
