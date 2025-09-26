@@ -9,6 +9,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.codenameone</groupId>
     <artifactId>qrscanner-common</artifactId>
+    <name>qrscanner-common</name>
     <version>2.0.5</version>
     <packaging>jar</packaging>
     <properties>

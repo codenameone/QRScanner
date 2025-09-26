@@ -44,8 +44,8 @@
 
 	  
     <properties>
-        <cn1.plugin.version>7.0.117</cn1.plugin.version>
-        <cn1.version>LATEST</cn1.version>
+        <cn1.plugin.version>7.0.201</cn1.plugin.version>
+        <cn1.version>7.0.201</cn1.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	      
         <java.version>1.8</java.version>
@@ -217,6 +217,16 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.7.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <autoPublish>true</autoPublish>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -236,7 +246,7 @@
         </profiles>
         <servers>
             <server>
-              <id>nexus-staging</id>
+              <id>central</id>
               <username>YOUR_USERNAME</username>
               <password>YOUR_PASSWORD</password>
             </server>
@@ -251,7 +261,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.4</version>
+                        <version>3.2.7</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -260,6 +270,10 @@
                                     <goal>sign</goal>
                                 </goals>
                                 <configuration>
+                                    <gpgArguments>
+                                        <arg>--pinentry-mode</arg>
+                                        <arg>loopback</arg>
+                                    </gpgArguments>
                                     <passphrase>${gpg.passphrase}</passphrase>
                                 </configuration>
                             </execution>
@@ -271,9 +285,9 @@
     </profiles>
     <distributionManagement>
         <repository>
-            <id>nexus-staging</id>
-            <name>Nexus Release Repository</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <id>central</id>
+            <name>Maven Central Release Repository</name>
+            <url>https://central.sonatype.com/api/v1/publisher/deployments</url>
         </repository>
     </distributionManagement>
 </project>
