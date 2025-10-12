@@ -4,13 +4,13 @@
     <parent>
         <groupId>com.codenameone</groupId>
         <artifactId>qrscanner</artifactId>
-        <version>2.0.5</version>
+        <version>2.0.6</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.codenameone</groupId>
     <artifactId>qrscanner-common</artifactId>
     <name>qrscanner-common</name>
-    <version>2.0.5</version>
+    <version>2.0.6</version>
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
